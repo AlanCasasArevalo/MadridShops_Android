@@ -1,4 +1,4 @@
-package com.alancasasarevalo.domain;
+package com.alancasasarevalo.madridshops.domain;
 
 import org.junit.Test;
 
