@@ -1,4 +1,4 @@
-package com.alancasasarevalo.repository.model
+package com.alancasasarevalo.madridshops.repository.model
 
 data class ShopEntity ( val id : Long,
                         val dataBaseId: Long,

@@ -1,4 +1,4 @@
-package com.alancasasarevalo.repository.db.dao
+package com.alancasasarevalo.madridshops.repository.db.dao
 
 import android.database.Cursor
 

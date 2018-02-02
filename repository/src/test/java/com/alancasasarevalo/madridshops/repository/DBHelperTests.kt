@@ -1,8 +1,8 @@
-package com.alancasasarevalo.repository
+package com.alancasasarevalo.madridshops.repository
 
+import com.alancasasarevalo.madridshops.repository.db.convertBooleanToInt
 import org.junit.Test
 
-import com.alancasasarevalo.repository.db.convertBooleanToInt
 import org.junit.Assert.*
 
 class DBHelperTests {

@@ -1,4 +1,4 @@
-package com.alancasasarevalo.madridshops_android
+package com.alancasasarevalo.madridshops.madridshops_android
 
 import org.junit.Test
 
