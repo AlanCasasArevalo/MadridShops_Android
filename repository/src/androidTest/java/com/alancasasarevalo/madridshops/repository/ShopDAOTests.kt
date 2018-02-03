@@ -6,9 +6,7 @@ import android.util.Log
 import com.alancasasarevalo.madridshops.repository.db.buildDBHelper
 import com.alancasasarevalo.madridshops.repository.db.dao.ShopDAO
 import com.alancasasarevalo.madridshops.repository.model.ShopEntity
-import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertTrue
-
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -17,11 +15,13 @@ class ShopDAOTests {
     val appContext = InstrumentationRegistry.getTargetContext()
     val dbhelper = buildDBHelper(appContext, "mydb.sqlite",1)
 
-//    @Test
+    @Test
     @Throws(Exception::class)
     fun given_valid_shopentity_it_gets_inserted_correctly() {
         // Context of the app under test.
 
+        val shopEntityDAO = ShopDAO(dbhelper)
+        shopEntityDAO.deleteAll()
         val shop = ShopEntity(1,
                 1,
                 "Shop1",
@@ -33,7 +33,6 @@ class ShopDAOTests {
                 "",
                 "")
 
-        val shopEntityDAO = ShopDAO(dbhelper)
 
         val id = shopEntityDAO.insert(shop)
 
@@ -42,11 +41,14 @@ class ShopDAOTests {
 
     }
 
-//    @Test
+    @Test
     @Throws(Exception::class)
     fun given_validShopEntityDAO_when_weUseQuery_them_queryGiveUsAllShops() {
+    val shopEntityDAO = ShopDAO(dbhelper)
 
-        val shop = ShopEntity(1,
+    shopEntityDAO.deleteAll()
+
+    val shop = ShopEntity(1,
                 2,
                 "Shop1",
                 "",
@@ -79,7 +81,6 @@ class ShopDAOTests {
                 "",
                 "")
 
-        val shopEntityDAO = ShopDAO(dbhelper)
 
         val id = shopEntityDAO.insert(shop)
         val id2 = shopEntityDAO.insert(shop2)
@@ -95,6 +96,9 @@ class ShopDAOTests {
     @Throws(Exception::class)
     fun given_validShopEntityDAO_when_weUseDeleteMethod_them_queryGiveUs0Shops() {
 
+        val shopEntityDAO = ShopDAO(dbhelper)
+
+        shopEntityDAO.deleteAll()
         val shop = ShopEntity(1,
                 2,
                 "Shop1",
@@ -128,9 +132,6 @@ class ShopDAOTests {
                 "",
                 "")
 
-        val shopEntityDAO = ShopDAO(dbhelper)
-
-        shopEntityDAO.deleteAll()
 
         val id = shopEntityDAO.insert(shop)
         val id2 = shopEntityDAO.insert(shop2)
@@ -141,7 +142,7 @@ class ShopDAOTests {
         }
 
 
-//        shopEntityDAO.delete(id)
+        shopEntityDAO.delete(id)
 
     }
 
