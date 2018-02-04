@@ -4,11 +4,11 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-fun buildDBHelper( context: Context, name: String, version: Int ) : DBHelper{
+internal fun buildDBHelper(context: Context, name: String, version: Int ) : DBHelper{
     return DBHelper(context, name, null, version)
 }
 
-class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
+internal class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
 
     override fun onOpen(db: SQLiteDatabase?) {
         super.onOpen(db)
@@ -68,7 +68,7 @@ fun convertIntToBoolean(int: Int): Boolean{
 }
 
 
-object DBConstants {
+internal object DBConstants {
     val TABLE_SHOP = "SHOP"
 
     // Table field constants

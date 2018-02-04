@@ -18,7 +18,7 @@ class GetAllShopsInteractorFakeImpl : GetAllShopsInteractor {
 
             success.successCompletion(shops)
         }else{
-            error.errorCompletion("Error while accessing the Repository")
+            error.errorCompletion("Error while accessing the RepositoryInterface")
         }
 
     }
@@ -31,7 +31,7 @@ class GetAllShopsInteractorFakeImpl : GetAllShopsInteractor {
 
             success(shops)
         }else{
-            error("Error while accessing the Repository")
+            error("Error while accessing the RepositoryInterface")
         }
     }
 

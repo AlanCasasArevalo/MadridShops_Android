@@ -3,8 +3,9 @@ package com.alancasasarevalo.madridshops_android
 import android.support.multidex.MultiDexApplication
 import android.util.Log
 import com.alancasasarevalo.madridshops.domain.interactor.ErrorCompletion
-import com.alancasasarevalo.madridshops.domain.interactor.getallshops.GetAllShopsInteractorFakeImpl
 import com.alancasasarevalo.madridshops.domain.interactor.SuccessCompletion
+import com.alancasasarevalo.madridshops.domain.interactor.deleteallshops.DeleteAllShopsImplementation
+import com.alancasasarevalo.madridshops.domain.interactor.getallshops.GetAllShopsInteractorFakeImpl
 import com.alancasasarevalo.madridshops.domain.model.Shops
 
 class MadridShopsApp: MultiDexApplication(){
@@ -43,6 +44,13 @@ class MadridShopsApp: MultiDexApplication(){
             override fun errorCompletion(errorMessage: String) {
             }
         })
+
+        DeleteAllShopsImplementation(this).execute(successClosure = {
+            Log.d("Success", "All shops were deleted")
+        }, errorClosure = {
+            Log.d("Error","All shops did not were deleted")
+        })
+
     }
 
     override fun onLowMemory() {
