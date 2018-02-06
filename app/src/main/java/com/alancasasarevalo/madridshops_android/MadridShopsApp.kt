@@ -4,8 +4,7 @@ import android.support.multidex.MultiDexApplication
 import android.util.Log
 import com.alancasasarevalo.madridshops.domain.interactor.ErrorCompletion
 import com.alancasasarevalo.madridshops.domain.interactor.SuccessCompletion
-import com.alancasasarevalo.madridshops.domain.interactor.deleteallshops.DeleteAllShopsImplementation
-import com.alancasasarevalo.madridshops.domain.interactor.getallshops.GetAllShopsInteractorFakeImpl
+import com.alancasasarevalo.madridshops.domain.interactor.getallshops.GetAllShopsInteractorImplementation
 import com.alancasasarevalo.madridshops.domain.model.Shops
 
 class MadridShopsApp: MultiDexApplication(){
@@ -16,7 +15,8 @@ class MadridShopsApp: MultiDexApplication(){
 
         Log.d("App","onCreate de MadridShopsApp")
 
-        val allShopsInteractor = GetAllShopsInteractorFakeImpl()
+
+        val allShopsInteractor = GetAllShopsInteractorImplementation(this)
 
 //        //Kotlin Style
 //        allShopsInteractor.execute(success = { shops: Shops ->
@@ -26,11 +26,14 @@ class MadridShopsApp: MultiDexApplication(){
 //        })
 //
         //Kotlin Style
-        allShopsInteractor.execute({ shops: Shops ->
+//        allShopsInteractor.execute({ shops: Shops ->
+//
+//        }, { msg: String ->
+//
+//        })
+//
 
-        }, { msg: String ->
-
-        })
+        Log.d("AppBuildConfig", BuildConfig.MADRID_SHOPS_SERVER_URL)
 
 
         //Java Style.
@@ -39,17 +42,21 @@ class MadridShopsApp: MultiDexApplication(){
 
                 Log.d("allShopsInteractor", "Numero de tiendas ${shops.count()}")
 
+                shops.shops.forEach{
+                    Log.d("Shop", it.name)
+                }
             }
         } , object: ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
+                Log.d("Error en implementation",errorMessage)
             }
         })
 
-        DeleteAllShopsImplementation(this).execute(successClosure = {
-            Log.d("Success", "All shops were deleted")
-        }, errorClosure = {
-            Log.d("Error","All shops did not were deleted")
-        })
+//        DeleteAllShopsImplementation(this).execute(successClosure = {
+//            Log.d("Success", "All shops were deleted")
+//        }, errorClosure = {
+//            Log.d("Error","All shops did not were deleted")
+//        })
 
     }
 

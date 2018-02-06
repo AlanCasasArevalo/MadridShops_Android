@@ -4,6 +4,7 @@ import com.alancasasarevalo.madridshops.repository.model.ShopEntity
 import com.alancasasarevalo.madridshops.repository.model.ShopsResponseEntity
 import com.alancasasarevalo.madridshops.repository.network.json.JsonEntitiesParser
 import com.alancasasarevalo.madridshops.util.ReadJsonFile
+import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import junit.framework.Assert.*
 import org.junit.Test
 
@@ -44,5 +45,28 @@ class JSONParsingTests {
 
 
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun given_invalid_string_when_containing_json_with_wrong_latitude_then_it_parse_one_shop_correctly() {
+        val shopJson = ReadJsonFile().loadJSONFromAsset("shopWrongLatitude.json")
+        assertTrue(!shopJson.isEmpty())
+
+        //parseo
+        val parser = JsonEntitiesParser()
+        var shop : ShopEntity
+
+        shop = try {
+            parser.parse<ShopEntity>(shopJson)
+        }catch (e: InvalidFormatException){
+            ShopEntity(1,1,"Parsing failed CRASH","",10f,10f,"","","","","","","","","","","","","","")
+        }
+
+        assertNotNull(shop)
+        assertEquals("Parsing failed CRASH", shop.name)
+        assertEquals(40.4180563f, shop.latitude, 0.1f)
+
+    }
+
 
 }
