@@ -28,6 +28,8 @@ internal class CacheImplementation(context: Context) :CacheInterface {
                 }
             })
 
+            cacheDBHelper().close()
+
         }).run()
     }
     override fun getAllActivities(successCompletion: (element: List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
@@ -42,6 +44,8 @@ internal class CacheImplementation(context: Context) :CacheInterface {
                     errorCompletion("Error to query shops")
                 }
             })
+
+            cacheDBHelper().close()
 
         }).run()
     }
@@ -62,6 +66,8 @@ internal class CacheImplementation(context: Context) :CacheInterface {
                 })
             }
 
+            cacheDBHelper().close()
+
         }).run()
     }
 
@@ -80,6 +86,8 @@ internal class CacheImplementation(context: Context) :CacheInterface {
                 })
             }
 
+            cacheDBHelper().close()
+
         }).run()
     }
 
@@ -96,6 +104,8 @@ internal class CacheImplementation(context: Context) :CacheInterface {
                 }
             })
 
+            cacheDBHelper().close()
+
         }).run()
 
     }
@@ -111,6 +121,8 @@ internal class CacheImplementation(context: Context) :CacheInterface {
                     errorCompletion("Error deleting")
                 }
             })
+
+            cacheDBHelper().close()
 
         }).run()
     }

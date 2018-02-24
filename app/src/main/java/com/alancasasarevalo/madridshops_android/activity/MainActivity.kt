@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import com.alancasasarevalo.madridshops.domain.interactor.ErrorCompletion
 import com.alancasasarevalo.madridshops.domain.interactor.SuccessCompletion
@@ -28,16 +26,32 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    enum class VIEW_SWITCHER_INDEX(val index : Int){
+        LOADING(0),
+        DOWNLOADED(1)
+    }
+
     private var googleMap: GoogleMap? = null
     var shopListFragment: ShopListFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
 
         Log.d("App","onCreate de MainActivity")
+
+        activity_main_view_switcher.setInAnimation(this, android.R.anim.fade_in)
+
+        activity_main_view_switcher.setOutAnimation(this, android.R.anim.fade_out)
+
+
+        // TODO:Hacer esto despues de que haya descargado toda la informacion de las actividades y las tiendas.
+//        activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.DOWNLOADED.index
+        activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.LOADING.index
+
+
+
+
 
         setupMapFragment()
 
@@ -47,8 +61,6 @@ class MainActivity : AppCompatActivity() {
                     .commit()
         }
 
-//        shopListFragment = fragmentManager.findFragmentById(R.id.activity_main_shop_list_fragment) as? ShopListFragment
-
     }
 
     private fun setupMapFragment() {
@@ -57,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         getAllShopsInteractor.execute(object : SuccessCompletion<Shops>{
             override fun successCompletion(element: Shops) {
                 initializeMap(element)
+                activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.DOWNLOADED.index
             }
 
         }, object : ErrorCompletion{
@@ -136,21 +149,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 }
 
 

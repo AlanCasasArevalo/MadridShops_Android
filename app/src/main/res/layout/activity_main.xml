@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main_view_switcher"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:showIn="@layout/activity_main"
     tools:context="com.alancasasarevalo.madridshops_android.activity.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+    <ProgressBar
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_gravity="center"
+        android:indeterminate="true" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical"
+        >
+
+        <fragment
+            android:id="@+id/activity_main_map_fragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_weight="1"
+            />
 
-    </android.support.design.widget.AppBarLayout>
+        <fragment
+            android:id="@+id/activity_main_shop_list_fragment"
+            android:name="com.alancasasarevalo.madridshops_android.fragment.ShopListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:layout_weight="1"
+            />
 
-    <include layout="@layout/content_main" />
+    </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</ViewSwitcher>
