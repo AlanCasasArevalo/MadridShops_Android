@@ -1,6 +1,6 @@
 package com.alancasasarevalo.madridshops.domain.interactor
 
-interface SuccessCompletion <T>{
+interface SuccessCompletion <in T>{
     fun successCompletion( element: T )
 }
 

@@ -13,7 +13,7 @@ class JSONParsingTests {
     @Throws(Exception::class)
     fun given_valid_string_when_containing_json_then_it_parse_one_shop_correctly() {
         val shopJson = ReadJsonFile().loadJSONFromAsset("MadridShop.json")
-//        assertTrue(false == shopJson.isEmpty())
+        assertTrue(false == shopJson.isEmpty())
         assertTrue(!shopJson.isEmpty())
 
         //parseo
@@ -22,7 +22,7 @@ class JSONParsingTests {
 
         assertNotNull(shop)
         assertEquals("Cortefiel - Preciados", shop.name)
-        assertEquals(40.4180563f, shop.latitude, 0.1f)
+        assertEquals(40.4180563f, shop.latitude.toFloat(), 0.1f)
 
     }
 
@@ -39,7 +39,7 @@ class JSONParsingTests {
 
         assertEquals(6, shops.result.count())
         assertEquals("Cortefiel - Preciados", shops.result[0].name)
-        assertEquals(40.4180563f, shops.result[0].latitude, 0.1f)
+        assertEquals(40.4180563f, shops.result[0].latitude.toFloat(), 0.1f)
 
         assertNotNull(shops)
 
@@ -59,12 +59,12 @@ class JSONParsingTests {
         shop = try {
             parser.parse<ShopEntity>(shopJson)
         }catch (e: InvalidFormatException){
-            ShopEntity(1,1,"Parsing failed CRASH","",10f,10f,"","","","","","","","","","","","","","")
+            ShopEntity(1,1,"Parsing failed CRASH","",10f.toString(),10f.toString(),"","","","","","","","","","","","","","")
         }
 
         assertNotNull(shop)
         assertEquals("Parsing failed CRASH", shop.name)
-        assertEquals(40.4180563f, shop.latitude, 0.1f)
+        assertEquals(40.4180563f, shop.latitude.toFloat(), 0.1f)
 
     }
 

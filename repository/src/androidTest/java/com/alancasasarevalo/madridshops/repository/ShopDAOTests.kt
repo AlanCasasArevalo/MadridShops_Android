@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ShopDAOTests {
     val appContext = InstrumentationRegistry.getTargetContext()
-    val dbhelper = buildDBHelper(appContext, "mydb.sqlite",1)
+    internal val dbhelper = buildDBHelper(appContext, "mydb.sqlite",1)
 
     @Test
     @Throws(Exception::class)
@@ -26,8 +26,8 @@ class ShopDAOTests {
                 1,
                 "Shop1",
                 "",
-                1.0f,
-                2.0f,
+                "1.0f",
+                "2.0f",
                 "",
                 "",
                 "",
@@ -52,8 +52,8 @@ class ShopDAOTests {
                 2,
                 "Shop1",
                 "",
-                1.0f,
-                2.0f,
+            "1.0f",
+            "2.0f",
                 "",
                 "",
                 "",
@@ -63,8 +63,8 @@ class ShopDAOTests {
                 3,
                 "Shop2",
                 "",
-                1.0f,
-                2.0f,
+                "1.0f",
+                "2.0f",
                 "",
                 "",
                 "",
@@ -74,8 +74,8 @@ class ShopDAOTests {
                 4,
                 "Shop3",
                 "",
-                1.0f,
-                2.0f,
+                "1.0f",
+                "2.0f",
                 "",
                 "",
                 "",
@@ -103,8 +103,8 @@ class ShopDAOTests {
                 2,
                 "Shop1",
                 "",
-                1.0f,
-                2.0f,
+                "1.0f",
+                "2.0f",
                 "",
                 "",
                 "",
@@ -114,8 +114,8 @@ class ShopDAOTests {
                 3,
                 "Shop2",
                 "",
-                1.0f,
-                2.0f,
+                "1.0f",
+                "2.0f",
                 "",
                 "",
                 "",
@@ -125,8 +125,8 @@ class ShopDAOTests {
                 4,
                 "Shop3",
                 "",
-                1.0f,
-                2.0f,
+                "1.0f",
+                "2.0f",
                 "",
                 "",
                 "",
@@ -145,6 +145,26 @@ class ShopDAOTests {
         shopEntityDAO.delete(id)
 
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun given_shopDAO_when_queryWithId_then_it_return_a_shopEntity() {
+        val shopEntityDAO = ShopDAO(dbhelper)
+        val shop3 = ShopEntity(3,
+                4,
+                "Shop3",
+                "",
+                "1.0f",
+                "2.0f",
+                "",
+                "",
+                "",
+                "")
+        val id = shopEntityDAO.insert(shop3)
+        val query = shopEntityDAO.query(1)
+        assertTrue(query.name == "Shop3")
+    }
+
 
 }
 
