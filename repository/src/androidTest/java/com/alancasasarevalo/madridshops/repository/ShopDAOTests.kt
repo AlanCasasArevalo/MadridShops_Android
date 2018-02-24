@@ -162,6 +162,8 @@ class ShopDAOTests {
                 "")
         val id = shopEntityDAO.insert(shop3)
         val query = shopEntityDAO.query(1)
+
+        Log.d("Nombre de la tienda ${shop3.name}", "Nombre de la tienda recuperada ${query.name} ")
         assertTrue(query.name == "Shop3")
     }
 
