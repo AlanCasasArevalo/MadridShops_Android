@@ -2,9 +2,8 @@ package com.alancasasarevalo.madridshops.domain.interactor.getallshops
 
 import com.alancasasarevalo.madridshops.domain.interactor.ErrorCompletion
 import com.alancasasarevalo.madridshops.domain.interactor.SuccessCompletion
-import com.alancasasarevalo.madridshops.domain.model.Shops
+import com.alancasasarevalo.madridshops.domain.model.MadridActivities
 
-
-interface GetAllShopsInteractor{
-    fun execute(success: SuccessCompletion<Shops>, error: ErrorCompletion)
+interface GetAllActivitiesInteractor {
+    fun execute(success: SuccessCompletion<MadridActivities>, error: ErrorCompletion)
 }

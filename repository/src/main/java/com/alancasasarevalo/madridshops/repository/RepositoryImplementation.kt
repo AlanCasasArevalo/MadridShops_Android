@@ -37,7 +37,18 @@ class RepositoryImplementation (context: Context) : RepositoryInterface {
     }
 
     override fun getAllActivities(successCompletion: (element: List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        cache.getAllActivities(
+                successCompletion = {
+
+                    //if there's shops in cache --> return shops.
+                    successCompletion(it)
+
+                }, errorCompletion = {
+
+            //If not shops in caches -->network
+            populateCache(successCompletion, errorCompletion)
+
+        })
     }
 
     private fun populateCache(successCompletion: (element: List<ShopEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {

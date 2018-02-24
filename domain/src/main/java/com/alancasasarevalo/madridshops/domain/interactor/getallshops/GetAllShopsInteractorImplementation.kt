@@ -10,7 +10,7 @@ import com.alancasasarevalo.madridshops.repository.RepositoryInterface
 import com.alancasasarevalo.madridshops.repository.model.ShopEntity
 import java.lang.ref.WeakReference
 
-class GetAllShopsInteractorImplementation (context: Context) : GetAllShopsInteractor {
+class GetAllShopsInteractorImplementation (context: Context) : GetAllShopsInteractor  {
 
     val weakReference = WeakReference(context)
 

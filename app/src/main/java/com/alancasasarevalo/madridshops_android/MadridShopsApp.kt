@@ -19,14 +19,14 @@ class MadridShopsApp: MultiDexApplication(){
         val allShopsInteractor = GetAllShopsInteractorImplementation(this)
 
 //        //Kotlin Style
-//        allShopsInteractor.execute(success = { shops: Shops ->
+//        allShopsInteractor.execute(success = { activities: Shops ->
 //
 //        }, error = { msg: String ->
 //
 //        })
 //
         //Kotlin Style
-//        allShopsInteractor.execute({ shops: Shops ->
+//        allShopsInteractor.execute({ activities: Shops ->
 //
 //        }, { msg: String ->
 //
@@ -53,9 +53,9 @@ class MadridShopsApp: MultiDexApplication(){
         })
 
 //        DeleteAllShopsImplementation(this).execute(successClosure = {
-//            Log.d("Success", "All shops were deleted")
+//            Log.d("Success", "All activities were deleted")
 //        }, errorClosure = {
-//            Log.d("Error","All shops did not were deleted")
+//            Log.d("Error","All activities did not were deleted")
 //        })
 
     }
