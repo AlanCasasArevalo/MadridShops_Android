@@ -3,6 +3,7 @@ package com.alancasasarevalo.madridshops.repository
 import android.content.Context
 import com.alancasasarevalo.madridshops.repository.cache.CacheImplementation
 import com.alancasasarevalo.madridshops.repository.cache.CacheInterface
+import com.alancasasarevalo.madridshops.repository.model.ActivitiesResponseEntity
 import com.alancasasarevalo.madridshops.repository.model.ActivityEntity
 import com.alancasasarevalo.madridshops.repository.model.ShopEntity
 import com.alancasasarevalo.madridshops.repository.model.ShopsResponseEntity
@@ -23,24 +24,22 @@ class RepositoryImplementation (context: Context) : RepositoryInterface {
         //Read all shops from cache
         cache.getAllShops(
                 successCompletion = {
-
-                    //if there's shops in cache --> return shops.
                     successCompletion(it)
-
                 }, errorCompletion = {
-
-                    //If not shops in caches -->network
-                    populateCache(successCompletion, errorCompletion)
-
+                    populateShopsCache(successCompletion, errorCompletion)
                 })
-
     }
 
     override fun getAllActivities(successCompletion: (element: List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        cache.getAllActivities(
+                successCompletion = {
+                    successCompletion(it)
+                }, errorCompletion = {
+            populateActivitiesCache(successCompletion, errorCompletion)
+        })
     }
 
-    private fun populateCache(successCompletion: (element: List<ShopEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
+    private fun populateShopsCache(successCompletion: (element: List<ShopEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
 
         val jsonManager: GetJSONManager = GetJsonManagerVolleyImplentation(weakContext.get()!!)
 
@@ -78,28 +77,28 @@ class RepositoryImplementation (context: Context) : RepositoryInterface {
     }
 
     override fun deleteAllActivities(successCompletion: () -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        cache.deleteAllActivities(successCompletion, errorCompletion)
     }
 
-    private fun populateActivitiesCache(successCompletion: (element: List<ShopEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
+    private fun populateActivitiesCache(successCompletion: (element: List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
 
         val jsonManager: GetJSONManager = GetJsonManagerVolleyImplentation(weakContext.get()!!)
 
-        jsonManager.execute(BuildConfig.MADRID_SHOPS_SERVER_URL, successCompletion = object : SuccessCompletion<String>{
+        jsonManager.execute(BuildConfig.MADRID_ACTIVITY_SERVER_URL, successCompletion = object : SuccessCompletion<String>{
             override fun successCompletion(element: String) {
                 //perform network request
                 val parser = JsonEntitiesParser()
 
-                var responseEntity: ShopsResponseEntity
+                var responseEntity: ActivitiesResponseEntity
                 responseEntity = try {
-                    parser.parse<ShopsResponseEntity>(element)
+                    parser.parse<ActivitiesResponseEntity>(element)
                 } catch (e: InvalidFormatException) {
                     error("ERROR PARSING")
                     return
                 }
 
                 //store result in cache
-                cache.saveAllShops(responseEntity.result, successCompletion = {
+                cache.saveAllActivities(responseEntity.result, successCompletion = {
                     successCompletion(responseEntity.result)
                 }, errorCompletion = {
                     errorCompletion("Something happened on the way to heaven!!!!")

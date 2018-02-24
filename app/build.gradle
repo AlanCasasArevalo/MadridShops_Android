@@ -19,6 +19,7 @@ android {
 
         debug {
             buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madrid-shops.com/json_new/getShops.php\""
+            buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madrid-shops.com/json_new/getShops.php\""
         }
 
         release {
@@ -31,7 +32,6 @@ android {
 
 dependencies {
     implementation project(':domain')
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$appcompat_version"
@@ -43,11 +43,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //Enabling multidex suport avoid 64K method limit (see attached: https://developer.android.com/studio/build/multidex.html)
     implementation 'com.android.support:multidex:1.0.0'
-
     //Enable Google maps (see attached: https://developers.google.com/android/guides/setup)
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
-
     //Enable Picasso library to cache image on imageView(see attached: http://square.github.io/picasso/)
     compile 'com.squareup.picasso:picasso:2.5.2'
-
+    //Implements commons for BaseFragment
+    implementation project(':commons')
 }
