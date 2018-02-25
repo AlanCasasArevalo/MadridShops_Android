@@ -2,16 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alancasasarevalo.madridshops_android.fragment.ActivitiesListFragment"
-    android:id="@+id/activity_activities_fragment_list"
+    tools:context="com.alancasasarevalo.madridshops_android.fragment.ActivitiesMapFragment"
+    android:id="@+id/activity_activities_fragment_map"
     >
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:text="Que pasa tron como estas desde la lista de actividades"
-        />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

@@ -12,6 +12,14 @@ import com.alancasasarevalo.madridshops_android.R
 
 class ShopListFragment : BaseListFragment() {
 
+    companion object {
+
+        fun newInstance() : ShopListFragment{
+            val fragment = ShopListFragment()
+            return fragment
+        }
+    }
+
     override fun getAdapter(): RecyclerView.Adapter<*> {
         val adapter = DataBindingRecyclerAdapter<Shop>(BR.shop, R.layout.item_shop)
         return adapter

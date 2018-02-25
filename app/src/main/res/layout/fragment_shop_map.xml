@@ -2,14 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alancasasarevalo.madridshops_android.fragment.MapFragment"
-    android:id="@+id/map_fragment"
-    >
+    tools:context="com.alancasasarevalo.madridshops_android.fragment.ShopMapFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="hola desde el fragment mapas" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

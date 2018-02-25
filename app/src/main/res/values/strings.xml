@@ -7,4 +7,10 @@
     <string name="background_description">Imagen de fondo de las actividiadaes</string>
     <string name="title_navigation_bar_shops">Shops</string>
     <string name="title_navigation_bar_activities">Activities</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_title_shops">Shops</string>
+    <string name="menu_title_activities">Activities</string>
+    <string name="menu_title_presentation">Presentation</string>
 </resources>

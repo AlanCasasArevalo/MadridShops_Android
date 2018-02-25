@@ -8,18 +8,23 @@ import android.view.MenuItem
 import com.alancasasarevalo.madridshops_android.R
 import kotlinx.android.synthetic.main.activity_shops.*
 
-class PresentationActivity : AppCompatActivity() {
+class ShopsActivity : AppCompatActivity() {
 
     companion object {
+//        const val EXTRA_SHOPS = "EXTRA_SHOPS"
+//        const val EXTRA_ACTIVITIES = "EXTRA_ACTIVITIES"
+
+        //        fun intent (context: Context, activities: MadridActivities) : Intent {
         fun intent (context: Context) : Intent {
-            val intent = Intent(context, PresentationActivity::class.java)
+            val intent = Intent(context, ShopsActivity::class.java)
+//            intent.putExtra(EXTRA_SHOPS, activities)
             return intent
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_presentation)
+        setContentView(R.layout.activity_shops)
 
         shops_navigation_view.setOnNavigationItemSelectedListener { item: MenuItem ->
             when(item.itemId){
@@ -32,6 +37,31 @@ class PresentationActivity : AppCompatActivity() {
             true
         }
 
-    }
 
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

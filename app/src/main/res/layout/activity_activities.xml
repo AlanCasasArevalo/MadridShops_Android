@@ -4,35 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
     android:orientation="vertical"
-    >
+    tools:context="com.alancasasarevalo.madridshops_android.activity.PresentationActivity">
 
-    <!--<ProgressBar-->
-        <!--style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:indeterminate="true" />-->
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <fragment
+        android:name="com.alancasasarevalo.madridshops_android.fragment.ActivitiesListFragment"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         />
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation_view"
+        android:id="@+id/shops_navigation_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_weight="0"
+        android:foregroundGravity="center"
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/colorAccent"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/menu_main_navigation">
 
     </android.support.design.widget.BottomNavigationView>
-
 
 </LinearLayout>

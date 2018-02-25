@@ -7,15 +7,22 @@
     android:orientation="vertical"
     tools:context="com.alancasasarevalo.madridshops_android.activity.PresentationActivity">
 
-    <TextView
+    <fragment
+        android:name="com.alancasasarevalo.madridshops_android.fragment.ShopMapFragment"
+        android:id="@+id/activity_shops_map_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Bienvenidos"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:layout_weight="1"
-        />
+        >
+    </fragment>
+
+    <fragment
+        android:name="com.alancasasarevalo.madridshops_android.fragment.ShopListFragment"
+        android:id="@+id/activity_shops_list_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </fragment>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/shops_navigation_view"
