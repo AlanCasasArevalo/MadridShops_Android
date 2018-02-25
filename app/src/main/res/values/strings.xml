@@ -3,4 +3,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_picasso">PicassoActivity</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="download_button">Pulsa para descargar todas las tiendas y actividades</string>
+    <string name="background_description">Imagen de fondo de las actividiadaes</string>
+    <string name="title_navigation_bar_shops">Shops</string>
+    <string name="title_navigation_bar_activities">Activities</string>
 </resources>

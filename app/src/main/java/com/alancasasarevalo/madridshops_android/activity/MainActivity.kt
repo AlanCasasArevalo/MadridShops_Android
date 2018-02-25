@@ -3,9 +3,11 @@ package com.alancasasarevalo.madridshops_android.activity
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
@@ -13,9 +15,11 @@ import com.alancasasarevalo.madridshops.domain.interactor.ErrorCompletion
 import com.alancasasarevalo.madridshops.domain.interactor.SuccessCompletion
 import com.alancasasarevalo.madridshops.domain.interactor.getallshops.GetAllShopsInteractor
 import com.alancasasarevalo.madridshops.domain.interactor.getallshops.GetAllShopsInteractorImplementation
+import com.alancasasarevalo.madridshops.domain.model.MadridActivities
 import com.alancasasarevalo.madridshops.domain.model.Shops
 import com.alancasasarevalo.madridshops_android.R
-import com.alancasasarevalo.madridshops_android.fragment.ShopListFragment
+import com.alancasasarevalo.madridshops_android.fragment.ActivitiesFragment
+import com.alancasasarevalo.madridshops_android.fragment.ShopsFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -31,35 +35,63 @@ class MainActivity : AppCompatActivity() {
         DOWNLOADED(1)
     }
 
+    lateinit var shops: Shops
+    lateinit var activities: MadridActivities
+
+    private val fragments: HashMap<Int, Fragment> = hashMapOf(
+            Pair(R.id.shops, ShopsFragment()),
+            Pair(R.id.activities, ActivitiesFragment())
+    )
+
+    companion object {
+        const val EXTRA_SHOPS = "EXTRA_SHOPS"
+        const val EXTRA_ACTIVITIES = "EXTRA_ACTIVITIES"
+        const val DEFAULT_OPTION_SELECTED = R.id.shops
+
+        fun intent(context: Context, shops: Shops?, madridActivities: MadridActivities?): Intent {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra(EXTRA_SHOPS, shops)
+            intent.putExtra(EXTRA_ACTIVITIES, madridActivities)
+
+            return intent
+        }
+
+    }
+
     private var googleMap: GoogleMap? = null
-    var shopListFragment: ShopListFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Log.d("App","onCreate de MainActivity")
+//
+//        activity_main_view_switcher.setInAnimation(this, android.R.anim.fade_in)
+//
+//        activity_main_view_switcher.setOutAnimation(this, android.R.anim.fade_out)
 
-        activity_main_view_switcher.setInAnimation(this, android.R.anim.fade_in)
+        navigation_view.selectedItemId = DEFAULT_OPTION_SELECTED
+        navigation_view.setOnNavigationItemSelectedListener { item ->
+            val fragment: Fragment? = fragments[item.itemId]
 
-        activity_main_view_switcher.setOutAnimation(this, android.R.anim.fade_out)
+            if (fragment != null) {
+                replaceErrorFragment(fragment)
+            }
+
+            true
+        }
+
 
 
         // TODO:Hacer esto despues de que haya descargado toda la informacion de las actividades y las tiendas.
 //        activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.DOWNLOADED.index
-        activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.LOADING.index
+//        activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.LOADING.index
 
 
 
 
 
         setupMapFragment()
-
-        if (fragmentManager.findFragmentById(R.id.activity_main_shop_list_fragment) == null){
-            fragmentManager.beginTransaction()
-                    .add(R.id.activity_main_shop_list_fragment,ShopListFragment.newInstance())
-                    .commit()
-        }
 
     }
 
@@ -68,8 +100,8 @@ class MainActivity : AppCompatActivity() {
         val getAllShopsInteractor : GetAllShopsInteractor = GetAllShopsInteractorImplementation(this)
         getAllShopsInteractor.execute(object : SuccessCompletion<Shops>{
             override fun successCompletion(element: Shops) {
-                initializeMap(element)
-                activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.DOWNLOADED.index
+//                initializeMap(element)
+//                activity_main_view_switcher.displayedChild = VIEW_SWITCHER_INDEX.DOWNLOADED.index
             }
 
         }, object : ErrorCompletion{
@@ -82,7 +114,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeMap(element: Shops) {
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.activity_main_map_fragment) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as SupportMapFragment
         mapFragment.getMapAsync{
             Log.d("MAPSUCCESS","Habemus Maps")
 
@@ -148,6 +180,26 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun replaceErrorFragment(fragment: Fragment) {
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
+    }
+
+    private fun initViewWithDefaultFragment() {
+        val currentFragment = supportFragmentManager
+                .findFragmentById(R.id.fragment_container)
+
+        if (currentFragment == null) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_container, fragments[DEFAULT_OPTION_SELECTED])
+                    .commit()
+        }
+    }
+
 
 }
 

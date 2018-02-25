@@ -24,8 +24,11 @@ internal object ShopDBConstants {
             KEY_SHOP_NAME,
             KEY_SHOP_IMAGE_URL,
             KEY_SHOP_LOGO_IMAGE_URL,
-            KEY_SHOP_ADDRESS, KEY_SHOP_URL,
+
+            KEY_SHOP_ADDRESS,
+            KEY_SHOP_URL,
             KEY_SHOP_DESCRIPTION,
+
             KEY_SHOP_LATITUDE,
             KEY_SHOP_LONGITUDE,
             KEY_SHOP_OPENING_HOURS)
@@ -35,14 +38,16 @@ internal object ShopDBConstants {
                     + "( "
                     + KEY_SHOP_DATABASE_ID + " integer primary key autoincrement, "
                     + KEY_SHOP_ID_JSON + " integer, "
-                    + KEY_SHOP_NAME + " text not null,"
+                    + KEY_SHOP_NAME + " text not null, "
                     + KEY_SHOP_IMAGE_URL + " text, "
                     + KEY_SHOP_LOGO_IMAGE_URL + " text, "
+
                     + KEY_SHOP_ADDRESS + " text,"
-                    + KEY_SHOP_URL + " text,"
-                    + KEY_SHOP_LATITUDE + " real,"
-                    + KEY_SHOP_LONGITUDE + " real, "
+                    + KEY_SHOP_URL + " text, "
                     + KEY_SHOP_DESCRIPTION + " text, "
+
+                    + KEY_SHOP_LATITUDE + " real, "
+                    + KEY_SHOP_LONGITUDE + " real, "
                     + KEY_SHOP_OPENING_HOURS + " text "
                     + ");")
 
@@ -50,3 +55,13 @@ internal object ShopDBConstants {
 
     val CREATE_DATABASE_SCRIPTS = arrayOf(SQL_SCRIPT_CREATE_SHOP_TABLE)
 }
+
+
+
+
+
+
+
+
+
+

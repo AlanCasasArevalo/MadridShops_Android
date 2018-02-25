@@ -1,6 +1,7 @@
 package com.alancasasarevalo.madridshops.domain.interactor.getallshops
 
 import android.content.Context
+import android.util.Log
 import com.alancasasarevalo.madridshops.domain.interactor.ErrorCompletion
 import com.alancasasarevalo.madridshops.domain.interactor.SuccessCompletion
 import com.alancasasarevalo.madridshops.domain.model.Shop
@@ -31,8 +32,19 @@ class GetAllShopsInteractorImplementation (context: Context) : GetAllShopsIntera
         val tempList = ArrayList<Shop>()
 
         list.forEach{
-            val shop = Shop(it.id.toInt(), it.name, it.address)
+            val shop = Shop(it.id.toInt(),
+                    it.name,
+                    it.img,
+                    it.logoImg,
 
+                    it.address,
+                    it.url,
+                    it.description,
+
+                    getCorrectCoordinateComponent(it.latitude),
+                    getCorrectCoordinateComponent(it.longitude),
+                    it.openingHours
+            )
 
             tempList.add(shop)
         }
@@ -40,4 +52,16 @@ class GetAllShopsInteractorImplementation (context: Context) : GetAllShopsIntera
         val shops = Shops(tempList)
         return  shops
     }
+
+    private fun getCorrectCoordinateComponent(coordinateComponent: String): String {
+        var coordinate = 0.0f
+        val s = coordinateComponent.replace(",", "")
+        try {
+            coordinate = java.lang.Float.parseFloat(s)
+        } catch (e: Exception) {
+            Log.d("ERROR CONVERTING", String.format("Can't convert %s", coordinateComponent))
+        }
+        return coordinate.toString()
+    }
+
 }

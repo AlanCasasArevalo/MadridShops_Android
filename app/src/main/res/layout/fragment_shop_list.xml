@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="@color/colorPrimary"
-    tools:context="com.alancasasarevalo.madridshops_android.fragment.ShopListFragment">
+    tools:context="com.alancasasarevalo.madridshops_android.fragment.ShopListFragment"
+    android:id="@+id/element_list_fragment"
+    >
 
     <TextView
         android:layout_width="wrap_content"

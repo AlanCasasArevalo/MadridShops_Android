@@ -1,22 +1,20 @@
 package com.alancasasarevalo.madridshops.domain.model
 
-import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 
-data class Shop(val id: Int,
-                val name: String,
-                val img: String,
-                val logoImg: String,
+data class MadridActivity(val id: Int,
+                          val name: String,
+                          val img: String,
+                          val logoImg: String,
 
-                val address: String,
-                val url: String,
-                val descriptionEn: String,
+                          val address: String,
+                          val url: String,
+                          val descriptionEn: String,
 
-                val gpsLati: String,
-                val gpsLong: String,
-                val openingHoursEn: String
+                          val gpsLati: String,
+                          val gpsLong: String,
+                          val openingHoursEn: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
@@ -28,19 +26,17 @@ data class Shop(val id: Int,
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString())
-
+            parcel.readString()) {
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(name)
         parcel.writeString(img)
         parcel.writeString(logoImg)
-
         parcel.writeString(address)
         parcel.writeString(url)
         parcel.writeString(descriptionEn)
-
         parcel.writeString(gpsLati)
         parcel.writeString(gpsLong)
         parcel.writeString(openingHoursEn)
@@ -60,43 +56,3 @@ data class Shop(val id: Int,
         }
     }
 }
-
-@SuppressLint("ParcelCreator")
-@Parcelize
-class Shops(var shops: MutableList<Shop>) : Aggregate <Shop>, Parcelable {
-    override fun count(): Int {
-        return shops.size
-    }
-
-    override fun all(): List<Shop> {
-        return shops
-    }
-
-    override fun get(position: Int): Shop {
-        return shops[position]
-    }
-
-    override fun add(element: Shop) {
-        shops.add(element)
-    }
-
-    override fun delete(position: Int) {
-        shops.removeAt(position)
-    }
-
-    override fun delete(element: Shop) {
-        shops.remove(element)
-    }
-
-}
-
-
-
-
-
-
-
-
-
-
-

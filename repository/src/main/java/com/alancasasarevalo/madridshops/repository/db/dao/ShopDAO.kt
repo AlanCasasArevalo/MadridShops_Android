@@ -49,13 +49,16 @@ internal class ShopDAO ( dbHelper: DBHelper) : DAOPersistable<ShopEntity> {
                 cursor.getLong(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_ID_JSON)),
                 cursor.getLong(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_DATABASE_ID)),
                 cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_NAME)),
-                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_DESCRIPTION)),
-                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_LATITUDE)),
-                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_LONGITUDE)),
                 cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_IMAGE_URL)),
                 cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_LOGO_IMAGE_URL)),
-                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_OPENING_HOURS)),
-                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_ADDRESS))
+
+                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_ADDRESS)),
+                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_URL)),
+                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_DESCRIPTION)),
+
+                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_LATITUDE)),
+                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_LONGITUDE)),
+                cursor.getString(cursor.getColumnIndex(ShopDBConstants.KEY_SHOP_OPENING_HOURS))
         )
 
     }
@@ -119,18 +122,39 @@ internal class ShopDAO ( dbHelper: DBHelper) : DAOPersistable<ShopEntity> {
 
         content.put(ShopDBConstants.KEY_SHOP_ID_JSON, shopEntity.id)
         content.put(ShopDBConstants.KEY_SHOP_NAME, shopEntity.name)
+        content.put(ShopDBConstants.KEY_SHOP_IMAGE_URL, shopEntity.img)
+        content.put(ShopDBConstants.KEY_SHOP_LOGO_IMAGE_URL, shopEntity.logoImg)
+
+        content.put(ShopDBConstants.KEY_SHOP_ADDRESS, shopEntity.address)
+        content.put(ShopDBConstants.KEY_SHOP_URL, shopEntity.url)
         content.put(ShopDBConstants.KEY_SHOP_DESCRIPTION, shopEntity.description)
+
         content.put(ShopDBConstants.KEY_SHOP_LATITUDE, shopEntity.latitude)
         content.put(ShopDBConstants.KEY_SHOP_LONGITUDE, shopEntity.longitude)
-        content.put(ShopDBConstants.KEY_SHOP_IMAGE_URL, shopEntity.img)
-        content.put(ShopDBConstants.KEY_SHOP_LOGO_IMAGE_URL, shopEntity.logo)
-        content.put(ShopDBConstants.KEY_SHOP_ADDRESS, shopEntity.address)
-        content.put(ShopDBConstants.KEY_SHOP_OPENING_HOURS, shopEntity.opening_hours_es)
+        content.put(ShopDBConstants.KEY_SHOP_OPENING_HOURS, shopEntity.openingHours)
+
+
 
         return content
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -22,8 +22,11 @@ internal object ActivityDBConstants {
             KEY_ACTIVITY_NAME,
             KEY_ACTIVITY_IMAGE_URL,
             KEY_ACTIVITY_LOGO_IMAGE_URL,
-            KEY_ACTIVITY_ADDRESS, KEY_ACTIVITY_URL,
+
+            KEY_ACTIVITY_ADDRESS,
+            KEY_ACTIVITY_URL,
             KEY_ACTIVITY_DESCRIPTION,
+
             KEY_ACTIVITY_LATITUDE,
             KEY_ACTIVITY_LONGITUDE,
             KEY_ACTIVITY_OPENING_HOURS)
@@ -36,11 +39,13 @@ internal object ActivityDBConstants {
                     + KEY_ACTIVITY_NAME + " text not null,"
                     + KEY_ACTIVITY_IMAGE_URL + " text, "
                     + KEY_ACTIVITY_LOGO_IMAGE_URL + " text, "
+
                     + KEY_ACTIVITY_ADDRESS + " text,"
                     + KEY_ACTIVITY_URL + " text,"
+                    + KEY_ACTIVITY_DESCRIPTION + " text, "
+
                     + KEY_ACTIVITY_LATITUDE + " real,"
                     + KEY_ACTIVITY_LONGITUDE + " real, "
-                    + KEY_ACTIVITY_DESCRIPTION + " text, "
                     + KEY_ACTIVITY_OPENING_HOURS + " text "
                     + ");")
 

@@ -51,15 +51,18 @@ internal class ActivityDAO(dbHelper: DBHelper) : DAOPersistable<ActivityEntity> 
                 cursor.getLong(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_ID_JSON)),
                 cursor.getLong(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_DATABASE_ID)),
                 cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_NAME)),
-                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_DESCRIPTION)),
-                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_LATITUDE)),
-                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_LONGITUDE)),
                 cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_IMAGE_URL)),
                 cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_LOGO_IMAGE_URL)),
-                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_OPENING_HOURS)),
-                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_ADDRESS))
-        )
 
+                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_ADDRESS)),
+                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_URL)),
+                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_DESCRIPTION)),
+
+
+                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_LATITUDE)),
+                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_LONGITUDE)),
+                cursor.getString(cursor.getColumnIndex(ActivityDBConstants.KEY_ACTIVITY_OPENING_HOURS))
+        )
     }
 
 
@@ -121,15 +124,33 @@ internal class ActivityDAO(dbHelper: DBHelper) : DAOPersistable<ActivityEntity> 
 
         content.put(ActivityDBConstants.KEY_ACTIVITY_ID_JSON, activityEntity.id)
         content.put(ActivityDBConstants.KEY_ACTIVITY_NAME, activityEntity.name)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_IMAGE_URL, activityEntity.img)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_LOGO_IMAGE_URL, activityEntity.logoImg)
+
+        content.put(ActivityDBConstants.KEY_ACTIVITY_ADDRESS, activityEntity.address)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_URL, activityEntity.url)
         content.put(ActivityDBConstants.KEY_ACTIVITY_DESCRIPTION, activityEntity.description)
+
         content.put(ActivityDBConstants.KEY_ACTIVITY_LATITUDE, activityEntity.latitude)
         content.put(ActivityDBConstants.KEY_ACTIVITY_LONGITUDE, activityEntity.longitude)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_IMAGE_URL, activityEntity.img)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_LOGO_IMAGE_URL, activityEntity.logo)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_ADDRESS, activityEntity.address)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_OPENING_HOURS, activityEntity.opening_hours_es)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_OPENING_HOURS, activityEntity.openingHours)
 
         return content
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

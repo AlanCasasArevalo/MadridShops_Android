@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
+//It's necessary to able DataBinding
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 26
 
@@ -23,16 +26,28 @@ android {
         }
     }
 
+    //It's necessary to able DataBinding
+    dataBinding{
+        enabled = true
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+    //This dependency able DataBind
+    kapt 'com.android.databinding:compiler:3.0.1'
+
+    //Enable Picasso library to cache image on imageView(see attached: http://square.github.io/picasso/)
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
 }
 repositories {
     mavenCentral()
