@@ -6,45 +6,46 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.alancasasarevalo.commons.BaseListFragment
 import com.alancasasarevalo.databinding.DataBindingRecyclerAdapter
-import com.alancasasarevalo.madridshops.domain.model.Shop
+import com.alancasasarevalo.madridshops.domain.model.MadridActivity
 import com.alancasasarevalo.madridshops_android.BR
 import com.alancasasarevalo.madridshops_android.R
 
-class ShopListFragment : BaseListFragment() {
+class ActivitiesListFragment : BaseListFragment() {
 
     override fun getAdapter(): RecyclerView.Adapter<*> {
-        val adapter = DataBindingRecyclerAdapter<Shop>(BR.shop, R.layout.item_shop)
+        val adapter = DataBindingRecyclerAdapter<MadridActivity>(BR.activity, R.layout.item_activity)
         return adapter
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (listAdapter as DataBindingRecyclerAdapter<Shop>).items.addAll(getDummyShops())
+        (listAdapter as DataBindingRecyclerAdapter<MadridActivity>).items.addAll(getDummyActivities())
         listAdapter.notifyDataSetChanged()
 
     }
 
-    fun getDummyShops() : ArrayList<Shop>{
+    fun getDummyActivities() : ArrayList<MadridActivity>{
 
-        var dummyArrayShop = ArrayList<Shop>()
+        var dummyArrayActivity = ArrayList<MadridActivity>()
 
         (0..9).forEach { i ->
-            val dummyShop = Shop(1,
-                    "Shop $i",
+            val dummyActivity = MadridActivity(1,
+                    "Activity $i",
                     "http://madrid-shops.com/json_new/getShops.php",
                     "https://madrid-shops.com/media/shops/logo-cortefiel-200.jpg",
-                    "Shop $i",
-                    "Shop $i",
-                    "Shop $i",
+                    "Activity $i",
+                    "Activity $i",
+                    "Activity $i",
                     "40.4180563",
                     "-3.7010172999999895",
-                    "Shop $i"
+                    "Activity $i"
             )
 
-            dummyArrayShop.add(dummyShop)
+            dummyArrayActivity.add(dummyActivity)
         }
 
-        return dummyArrayShop
+        return dummyArrayActivity
 
-    }}
+    }
+}

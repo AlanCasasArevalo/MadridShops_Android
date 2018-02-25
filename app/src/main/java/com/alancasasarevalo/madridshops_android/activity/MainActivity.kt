@@ -18,8 +18,8 @@ import com.alancasasarevalo.madridshops.domain.interactor.getallshops.GetAllShop
 import com.alancasasarevalo.madridshops.domain.model.MadridActivities
 import com.alancasasarevalo.madridshops.domain.model.Shops
 import com.alancasasarevalo.madridshops_android.R
-import com.alancasasarevalo.madridshops_android.fragment.ActivitiesFragment
-import com.alancasasarevalo.madridshops_android.fragment.ShopsFragment
+import com.alancasasarevalo.madridshops_android.fragment.ActivitiesListFragment
+import com.alancasasarevalo.madridshops_android.fragment.ShopListFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var activities: MadridActivities
 
     private val fragments: HashMap<Int, Fragment> = hashMapOf(
-            Pair(R.id.shops, ShopsFragment()),
-            Pair(R.id.activities, ActivitiesFragment())
+            Pair(R.id.shops, ShopListFragment()),
+            Pair(R.id.activities, ActivitiesListFragment())
     )
 
     companion object {
@@ -70,17 +70,18 @@ class MainActivity : AppCompatActivity() {
 //
 //        activity_main_view_switcher.setOutAnimation(this, android.R.anim.fade_out)
 
+        initViewWithDefaultFragment()
+
         navigation_view.selectedItemId = DEFAULT_OPTION_SELECTED
-        navigation_view.setOnNavigationItemSelectedListener { item ->
-            val fragment: Fragment? = fragments[item.itemId]
 
-            if (fragment != null) {
-                replaceErrorFragment(fragment)
+        navigation_view.setOnNavigationItemSelectedListener{item ->
+            val fragment : Fragment? = fragments[item.itemId]
+
+            if (fragment != null){
+                replaceErrorFragment( fragment )
             }
-
             true
         }
-
 
 
         // TODO:Hacer esto despues de que haya descargado toda la informacion de las actividades y las tiendas.
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        setupMapFragment()
+//        setupMapFragment()
 
     }
 

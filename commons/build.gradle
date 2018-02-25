@@ -45,8 +45,8 @@ dependencies {
     //This dependency able DataBind
     kapt 'com.android.databinding:compiler:3.0.1'
 
-    //Enable Picasso library to cache image on imageView(see attached: http://square.github.io/picasso/)
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    //This dependency able Glide (see attached url:https://github.com/bumptech/glide)
+    implementation 'com.github.bumptech.glide:glide:4.0.0-RC1'
 
 }
 repositories {

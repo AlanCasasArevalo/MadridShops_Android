@@ -7,7 +7,7 @@ import com.alancasasarevalo.madridshops_android.R
 class ActivitiesFragment : BaseFragment() {
 
     override fun getLayoutResId(): Int {
-        return R.layout.fragment_activities
+        return R.layout.fragment_activities_list
     }
 
 }

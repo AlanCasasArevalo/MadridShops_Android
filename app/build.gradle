@@ -32,7 +32,7 @@ android {
         }
     }
     //It's necessary to able DataBinding
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 }

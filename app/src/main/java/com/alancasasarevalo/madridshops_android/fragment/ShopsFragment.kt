@@ -1,16 +1,11 @@
 package com.alancasasarevalo.madridshops_android.fragment
 
-
-import android.support.v7.widget.RecyclerView
-import com.alancasasarevalo.commons.BaseListFragment
+import com.alancasasarevalo.commons.BaseFragment
 import com.alancasasarevalo.madridshops_android.R
 
-class ShopsFragment : BaseListFragment() {
-    override fun getAdapter(): RecyclerView.Adapter<*> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
+class ShopsFragment : BaseFragment() {
     override fun getLayoutResId(): Int {
-        return R.layout.fragment_shops
+        return R.layout.fragment_shop_list
     }
 }

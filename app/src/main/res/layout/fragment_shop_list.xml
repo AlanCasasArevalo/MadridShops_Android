@@ -2,17 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/colorPrimary"
     tools:context="com.alancasasarevalo.madridshops_android.fragment.ShopListFragment"
-    android:id="@+id/element_list_fragment"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Hola que tal estamos tio"
         android:layout_gravity="center"
-        android:text="Que pasa tron como estas "
+        android:text="Que pasa tron como estas desde la lista de tiendas"
         />
 
 </FrameLayout>

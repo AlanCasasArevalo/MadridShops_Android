@@ -1,16 +1,15 @@
 package com.alancasasarevalo.databinding
 
-import android.content.Context
 import android.databinding.BindingAdapter
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 
 @BindingAdapter("imageURL")
 
-fun loadImageFromInternet(context: Context, imageView: ImageView, url:String){
+fun loadImageFromInternet(imageView: ImageView, url:String){
 
-    Picasso
-            .with(context)
+    Glide
+            .with(imageView)
             .load(url)
             .into(imageView)
 
